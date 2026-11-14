@@ -52,8 +52,8 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = var.nic_name  
-  location            = var .location
+  name                = var.nic_name 
+  location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {

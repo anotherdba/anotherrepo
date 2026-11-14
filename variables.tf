@@ -21,7 +21,7 @@ variable "tags" {
 variable "storage_account_name" {
   description = "Name of the storage account to create."
   type        = string
-  default     = "rg-terraform-demo"
+  default     = "stterraformdemomed"
 }
 
 
