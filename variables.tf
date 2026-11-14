@@ -23,3 +23,28 @@ variable "storage_account_name" {
   type        = string
   default     = "storagefromtfmed"
 }
+
+
+variable "virtual_network_name" {
+  description = "Name of the virtual network to create."
+  type        = string
+  default     = "vnet1"
+}
+
+variable "vm_name" {
+  description = "Name of the virtual machine to create."
+  type        = string
+  default     = "winvm"
+}
+
+variable "subnet_name" {
+  description = "Name of the subnet to create."
+  type        = string
+  default     = "internal"
+}
+
+variable "nic_name" {
+  description = "Name of the network interface to create."
+  type        = string
+  default     = "nic1"
+}
