@@ -58,7 +58,7 @@ variable "admin_username" {
 variable "admin_password" {
   description = "Admin password for the virtual machine."
   type        = string
-  default     = "P@$$w0rd1234!"
+  default     = "P@$$w0rd123454534523452!"
 } 
 
 variable "vm_size" {
