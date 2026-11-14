@@ -49,11 +49,11 @@ variable "nic_name" {
   default     = "nic1"
 }
 
-# variable "admin_username" {
-#   description = "Admin username for the virtual machine."
-#   type        = string
-#   default     = "najme001"
-# } 
+variable "admin_username" {
+  description = "Admin username for the virtual machine."
+  type        = string
+  default     = "najme001"
+} 
 
 # variable "admin_password" {
 #   description = "Admin password for the virtual machine."
