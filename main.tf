@@ -31,11 +31,7 @@ resource "azurerm_storage_account" "example" {
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-
-
 }
-
-
 
 resource "azurerm_virtual_network" "main" {
   name                = var.virtual_network_name
@@ -52,7 +48,7 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = var.nic_name 
+  name                = var.nic_name
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -86,4 +82,3 @@ resource "azurerm_windows_virtual_machine" "example" {
     version   = "latest"
   }
 }
-
