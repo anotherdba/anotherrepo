@@ -18,51 +18,51 @@ variable "tags" {
   }
 }
 
-variable "storage_account_name" {
-  description = "Name of the storage account to create."
-  type        = string
-  default     = "stterraformdemomed"
-}
+# variable "storage_account_name" {
+#   description = "Name of the storage account to create."
+#   type        = string
+#   default     = "stterraformdemomed"
+# }
 
 
-variable "virtual_network_name" {
-  description = "Name of the virtual network to create."
-  type        = string
-  default     = "my-vnet"
-}
+# variable "virtual_network_name" {
+#   description = "Name of the virtual network to create."
+#   type        = string
+#   default     = "my-vnet"
+# }
 
-variable "vm_name" {
-  description = "Name of the virtual machine to create."
-  type        = string
-  default     = "winvm"
-}
+# variable "vm_name" {
+#   description = "Name of the virtual machine to create."
+#   type        = string
+#   default     = "winvm"
+# }
 
-variable "subnet_name" {
-  description = "Name of the subnet to create."
-  type        = string
-  default     = "internal"
-}
+# variable "subnet_name" {
+#   description = "Name of the subnet to create."
+#   type        = string
+#   default     = "internal"
+# }
 
-variable "nic_name" {
-  description = "Name of the network interface to create."
-  type        = string
-  default     = "nic1"
-}
+# variable "nic_name" {
+#   description = "Name of the network interface to create."
+#   type        = string
+#   default     = "nic1"
+# }
 
-variable "admin_username" {
-  description = "Admin username for the virtual machine."
-  type        = string
-  default     = "najme001"
-} 
+# variable "admin_username" {
+#   description = "Admin username for the virtual machine."
+#   type        = string
+#   default     = "najme001"
+# } 
 
-variable "admin_password" {
-  description = "Admin password for the virtual machine."
-  type        = string
-  default     = "P@$$w0rd1234!"
-} 
+# variable "admin_password" {
+#   description = "Admin password for the virtual machine."
+#   type        = string
+#   default     = "P@$$w0rd1234!"
+# } 
 
-variable "vm_size" {
-  description = "Size of the virtual machine."
-  type        = string
-  default     = "Standard_B2ms"
-} 
+# variable "vm_size" {
+#   description = "Size of the virtual machine."
+#   type        = string
+#   default     = "Standard_B2ms"
+# } 
