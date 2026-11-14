@@ -18,11 +18,11 @@ variable "tags" {
   }
 }
 
-# variable "storage_account_name" {
-#   description = "Name of the storage account to create."
-#   type        = string
-#   default     = "stterraformdemomed"
-# }
+variable "storage_account_name" {
+  description = "Name of the storage account to create."
+  type        = string
+  default     = "stterraformdemomed"
+}
 
 
 # variable "virtual_network_name" {
