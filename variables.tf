@@ -17,3 +17,9 @@ variable "tags" {
     managed_by = "terraform"
   }
 }
+
+variable "storage_account_name" {
+  description = "Name of the storage account to create."
+  type        = string
+  default     = "storagefromtfmed"
+}
