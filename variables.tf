@@ -52,17 +52,17 @@ variable "nic_name" {
 variable "admin_username" {
   description = "Admin username for the virtual machine."
   type        = string
-  default     = "najme001"
-} 
+  default     = "adminuser"
+}
 
-# variable "admin_password" {
-#   description = "Admin password for the virtual machine."
-#   type        = string
-#   default     = "P@$$w0rd123454534523452!"
-# } 
+variable "admin_password" {
+  description = "Admin password for the virtual machine."
+  type        = string
+  default     = "P@$$w0rd123454534523452!"
+}
 
-# variable "vm_size" {
-#   description = "Size of the virtual machine."
-#   type        = string
-#   default     = "Standard_D4_v5"
-# } 
+variable "vm_size" {
+  description = "Size of the virtual machine."
+  type        = string
+  default     = "Standard_D4_v5"
+}
