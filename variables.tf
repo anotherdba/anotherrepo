@@ -21,14 +21,14 @@ variable "tags" {
 variable "storage_account_name" {
   description = "Name of the storage account to create."
   type        = string
-  default     = "storagefromtfmed"
+  default     = "rg-terraform-demo"
 }
 
 
 variable "virtual_network_name" {
   description = "Name of the virtual network to create."
   type        = string
-  default     = "vnet1"
+  default     = "my-vnet"
 }
 
 variable "vm_name" {
@@ -48,3 +48,21 @@ variable "nic_name" {
   type        = string
   default     = "nic1"
 }
+
+variable "admin_username" {
+  description = "Admin username for the virtual machine."
+  type        = string
+  default     = "najme001"
+} 
+
+variable "admin_password" {
+  description = "Admin password for the virtual machine."
+  type        = string
+  default     = "P@$$w0rd1234!"
+} 
+
+variable "vm_size" {
+  description = "Size of the virtual machine."
+  type        = string
+  default     = "Standard_B2ms"
+} 

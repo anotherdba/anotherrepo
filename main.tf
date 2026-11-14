@@ -4,7 +4,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.0"
+      version = "5.14.0"
     }
   }
 
@@ -25,7 +25,15 @@ resource "azurerm_resource_group" "this" {
   location = var.location
 }
 
+resource "azurerm_storage_account" "example" {
+  name                     = var.storage_account_name
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 
+
+}
 
 
 
@@ -59,9 +67,9 @@ resource "azurerm_windows_virtual_machine" "example" {
   name                = var.vm_name
   resource_group_name = var.resource_group_name
   location            = var.location
-  size                = "Standard_B2ms"
-  admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  size                = var.vm_size
+  admin_username      = var.admin_username
+  admin_password      = var.admin_password
   network_interface_ids = [
     azurerm_network_interface.main.id
   ]
