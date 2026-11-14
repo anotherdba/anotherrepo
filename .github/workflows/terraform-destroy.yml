@@ -1,0 +1,79 @@
+name: terraform-destroy
+
+# Manual only. Destroys everything tracked in the Terraform state.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "destroy" to confirm'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+jobs:
+  plan-destroy:
+    if: inputs.confirm == 'destroy'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.9"
+
+      - name: Terraform init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.TFSTATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ vars.TFSTATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.TFSTATE_CONTAINER }}" \
+            -backend-config="key=resource-group.tfstate"
+
+      - name: Terraform plan (destroy)
+        run: terraform plan -destroy -input=false -out=tfdestroy
+
+      - name: Show what will be destroyed
+        run: terraform show -no-color tfdestroy
+
+      - name: Upload destroy plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfdestroy
+          path: tfdestroy
+
+  destroy:
+    needs: plan-destroy
+    runs-on: ubuntu-latest
+    # Required reviewers on this environment give you an approval step
+    # after you have read the destroy plan.
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.9"
+
+      - name: Terraform init
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.TFSTATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ vars.TFSTATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.TFSTATE_CONTAINER }}" \
+            -backend-config="key=resource-group.tfstate"
+
+      - name: Download destroy plan
+        uses: actions/download-artifact@v4
+        with:
+          name: tfdestroy
+
+      - name: Terraform destroy
+        run: terraform apply -input=false tfdestroy
