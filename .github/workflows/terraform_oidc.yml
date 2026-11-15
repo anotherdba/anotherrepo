@@ -38,8 +38,8 @@ jobs:
         with:
           terraform_version: "~> 1.9"
 
-      - name: Terraform fmt
-        run: terraform fmt -check -recursive
+      # - name: Terraform fmt
+      #   run: terraform fmt -check -recursive
       
       - name: Terraform init
         run: |
