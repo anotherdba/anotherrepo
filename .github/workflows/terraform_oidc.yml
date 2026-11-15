@@ -10,7 +10,7 @@ on:
     branches: [main]
     paths:
       - "**.tf"
-      - ".github/workflows/terraform.yml"
+      - ".github/workflows/terraform_oidc.yml"
   workflow_dispatch:
 
 # Read the repo and post plan output on PRs.
