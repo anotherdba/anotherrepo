@@ -37,7 +37,10 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "~> 1.9"
-
+      - name: Check OIDC env
+        run: |
+          echo "URL set: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL != '' }}"
+          [ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo "token endpoint present" || echo "NO OIDC token endpoint"
       - name: Terraform fmt
         run: terraform fmt -check -recursive
 
