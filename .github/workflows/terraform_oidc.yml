@@ -37,13 +37,20 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "~> 1.9"
+
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive
+        
       - name: Check OIDC env
         run: |
           echo "URL set: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL != '' }}"
           [ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo "token endpoint present" || echo "NO OIDC token endpoint"
-      - name: Terraform fmt
-        run: terraform fmt -check -recursive
 
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       - name: Terraform init
         run: |
           terraform init \
