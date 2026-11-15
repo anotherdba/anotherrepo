@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "**.tf"
-      - ".github/workflows/terraform.yml"
+      - ".github/workflows/terraform_oidc.yml"
   push:
     branches: [main]
     paths:
