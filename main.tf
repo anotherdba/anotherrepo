@@ -27,11 +27,11 @@ resource "azurerm_resource_group" "this" {
 
 resource "azurerm_storage_account" "example" {
   name                     = var.storage_account_name
-  resource_group_name      = var.resource_group_name
-  location                 = var.location
+  resource_group_name      = azurerm_resource_group.this.name
+  location                 = azurerm_resource_group.this.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  depends_on = [azurerm_resource_group.this]
+  
 }
 
 resource "azurerm_virtual_network" "main" {
