@@ -11,10 +11,13 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
+  id-token: write
 
 env:
+  ARM_USE_OIDC: true
+  ARM_USE_AZUREAD: true
   ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
   ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
   ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
