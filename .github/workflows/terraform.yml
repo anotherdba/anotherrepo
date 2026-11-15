@@ -1,4 +1,4 @@
-name: terraform-resource-group
+name: terraform
 
 on:
   pull_request:
