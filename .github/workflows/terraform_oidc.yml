@@ -1,16 +1,6 @@
 name: terraform OIDC
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "**.tf"
-      - ".github/workflows/terraform_oidc.yml"
-  push:
-    branches: [main]
-    paths:
-      - "**.tf"
-      - ".github/workflows/terraform_oidc.yml"
   workflow_dispatch:
 
 # Read the repo and post plan output on PRs.
