@@ -17,4 +17,4 @@ jobs:
           echo "Run number: ${{ github.run_number }}"
       - name: show variable name
         run: |
-          echo "The name of the variable is ${{ var.my_var }}"
+          echo "The name of the variable is ${{ vars.my_var }}"
