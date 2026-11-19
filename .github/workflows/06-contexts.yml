@@ -7,16 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show the trigger
-        run: echo "This workflow was triggered by the ${{ github.event_name }} event."
-      - name: show Ref
-        run: 'echo "Ref: ${{ github.ref }}"'
-      - name: show SHA
-        run: 'echo "SHA: ${{ github.sha }}"'
-      - name: show Actor
-        run: 'echo "Actor: ${{ github.actor }}"'
-      - name: show Workflow
-        run: 'echo "Workflow: ${{ github.workflow }}"'
-      - name: show Run ID
-        run: 'echo "Run ID: ${{ github.run_id }}"'
-      - name: show Run number
-        run: 'echo "Run number: ${{ github.run_number }}"'
+        run: |
+          echo "This workflow was triggered by the ${{ github.event_name }} event."
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Run ID: ${{ github.run_id }}"'
+          echo "Run number: ${{ github.run_number }}"
+      - name: show variable name
+        run: |
+          echo "The name of the variable is ${{ var.my_var }}"
