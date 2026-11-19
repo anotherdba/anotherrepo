@@ -7,10 +7,16 @@ on:
         required: false
         default: "false"
 run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
+env:
+  MY_WORKFLOW_VAR: "workflow"
+  MY_OVERWRITTEN_VAR: "workflow"
 
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: "job"
+      MY_OVERWRITTEN_VAR: "job"
     steps:
       - name: Show the trigger
         run: |
@@ -21,6 +27,11 @@ jobs:
           echo "Workflow: ${{ github.workflow }}"
           echo "Run ID: ${{ github.run_id }}"
           echo "Run number: ${{ github.run_number }}"
-      - name: show variable name
+      - name: Retrieve variable
         run: |
           echo "The name of the variable is ${{ vars.my_var }}"
+      - name: Print Env variables
+        run: |
+          echo "MY_WORKFLOW_VAR: $MY_WORKFLOW_VAR"
+          echo "MY_JOB_VAR: $MY_JOB_VAR"
+          echo "MY_OVERWRITTEN_VAR: $MY_OVERWRITTEN_VAR"
