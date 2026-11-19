@@ -18,7 +18,7 @@ jobs:
       MY_OVERWRITTEN_VAR: "job"
     steps:
       - name: '[debug] print start-up data'
-        if: ${{ inputs.debug }}
+        if: ${{ inputs.debug == true }}
         run: |
           echo "This workflow was triggered by the ${{ github.event_name }} event."
           echo "Branch: ${{ github.ref }}"
