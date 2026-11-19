@@ -17,14 +17,15 @@ jobs:
       MY_JOB_VAR: "job"
       MY_OVERWRITTEN_VAR: "job"
     steps:
-      - name: [debug] print start-up data
-        if : ${{ inputs.debug == 'true' }}
+      - name: "[debug] print start-up data"
+        if: ${{ inputs.debug == 'true' }}
         run: |
           echo "This workflow was triggered by the ${{ github.event_name }} event."
           echo "Branch: ${{ github.ref }}"
           echo "Workflow: ${{ github.workflow }}"
 
-      - name: [debug] print when triggered from main branch
+      - name: "[debug] print when triggered from main branch"
+        if: ${{ github.ref == 'refs/heads/main' }}  
         run: |
           echo "The name of the variable is ${{ vars.my_var }}"
       - name: Print Env variables
