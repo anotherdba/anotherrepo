@@ -1,0 +1,37 @@
+name: 07-Using Expressions
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug }}
+env:
+  MY_WORKFLOW_VAR: "workflow"
+  MY_OVERWRITTEN_VAR: "workflow"
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: "job"
+      MY_OVERWRITTEN_VAR: "job"
+    steps:
+      - name: Show the trigger
+        run: |
+          echo "This workflow was triggered by the ${{ github.event_name }} event."
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run number: ${{ github.run_number }}"
+      - name: Retrieve variable
+        run: |
+          echo "The name of the variable is ${{ vars.my_var }}"
+      - name: Print Env variables
+        run: |
+          echo "MY_WORKFLOW_VAR: $MY_WORKFLOW_VAR"
+          echo "MY_JOB_VAR: $MY_JOB_VAR"
+          echo "MY_OVERWRITTEN_VAR: $MY_OVERWRITTEN_VAR"
