@@ -6,7 +6,6 @@ on:
       debug:
         type: boolean
         default: false
-run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug }}
 env:
   MY_WORKFLOW_VAR: "workflow"
   MY_OVERWRITTEN_VAR: "workflow"
@@ -19,7 +18,7 @@ jobs:
       MY_OVERWRITTEN_VAR: "job"
     steps:
       - name: '[debug] print start-up data'
-        if: ${{ inputs.debug == 'true' }}
+        if: ${{ inputs.debug }}
         run: |
           echo "This workflow was triggered by the ${{ github.event_name }} event."
           echo "Branch: ${{ github.ref }}"
