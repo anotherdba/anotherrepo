@@ -1,0 +1,24 @@
+name: 09-Using Functions
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  echo1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing Step
+        run: |
+          echo "This step will fail"
+          exit 1
+      - name: I will be skipped
+        if: ${{ failure() }}
+        run: |
+          echo "This step will be skipped because the previous step failed"
+      - name: I will execute
+        if: ${{ success() }}
+        run: |
+          echo "This step will execute because the previous step succeeded"
+      - name: I will execute
+        if: ${{ always() }}
+        run: |
+          echo "This step will execute only if the workflow completes"
