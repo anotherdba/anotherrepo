@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 env:
   MY_WORKFLOW_VAR: 'I am a workflow env variable'
-  MY_OVERWRITTEN_VAR: 'I am a workflow env variable'
+  OVERWRITTEN: 'I am a workflow env variable'
 
 jobs:
   echo:
