@@ -24,6 +24,8 @@ jobs:
       build-status: ${{ steps.build.outputs.status }}
     steps:
       - name: Print GITHUB_OUTPUT path
+        run: echo "$GITHUB_OUTPUT"
+      - name: Build the project
         id: build
         run: |
           echo "Building the project from tag ${{ inputs.build-status }}"
