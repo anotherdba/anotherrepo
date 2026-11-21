@@ -26,10 +26,10 @@ jobs:
         run: echo "Building the project from tag ${{ inputs.tag }}"
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ !inputs.dry-run }}
     needs: build
     steps:
       - name: Deploy to target environment
-        if: ${{ !inputs.dry-run }}
         run: echo "Deploying to ${{ inputs.target }} environment"
       - name: set environment variable
         run: echo "TARGET_ENV=${{ inputs.target }}" 
