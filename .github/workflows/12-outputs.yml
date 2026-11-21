@@ -21,7 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      build-tag: ${{ steps.build.outputs.tag }}
+      build-status: ${{ steps.build.outputs.status }}
     steps:
       - name: Print GITHUB_OUTPUT path
         id: build
@@ -34,4 +34,5 @@ jobs:
     needs: build
     steps:
       - name: Deploy to target environment
-        run: echo "Deploying to ${{ inputs.target }} environment with build tag ${{ needs.build.outputs.build-tag }}"
+        if: ${{ needs.build.outputs.build-status == 'success' }}
+        run: echo "Deploying to ${{ inputs.build-status }} environment with build status ${{ needs.build.outputs.build-status }}"
