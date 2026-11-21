@@ -4,13 +4,12 @@ on:
     inputs:
       dry-run:
         description: 'skip deployment and only print build output'
-        required: false
         default: false
         type: boolean
-      target-env:
+      target:
+        type: environment
         description: 'target environment for deployment'
         required: true
-        default: 'non-prod'
       tag:
         type: choice
         options:
@@ -31,6 +30,6 @@ jobs:
     steps:
       - name: Deploy to target environment
         if: ${{ !inputs.dry-run }}
-        run: echo "Deploying to ${{ inputs.target-env }} environment"
+        run: echo "Deploying to ${{ inputs.target }} environment"
       - name: set environment variable
-        run: echo "TARGET_ENV=${{ inputs.target-env }}" 
+        run: echo "TARGET_ENV=${{ inputs.target }}" 
