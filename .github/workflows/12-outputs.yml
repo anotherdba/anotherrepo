@@ -1,0 +1,37 @@
+name: 12 -working with outputs
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'skip deployment and only print build output'
+        default: false
+        type: boolean
+      target:
+        type: environment
+        description: 'target environment for deployment'
+        required: true
+      build-status:
+        type: choice
+        options:
+          - success
+          - failure
+        description: 'Release from which to build and deploy'
+        default: success
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      build-tag: ${{ steps.build.outputs.tag }}
+    steps:
+      - name: Print GITHUB_OUTPUT path
+        id: build
+        run: |
+          echo "Building the project from tag ${{ inputs.build-status }}"
+          echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.dry-run }}
+    needs: build
+    steps:
+      - name: Deploy to target environment
+        run: echo "Deploying to ${{ inputs.target }} environment with build tag ${{ needs.build.outputs.build-tag }}"
