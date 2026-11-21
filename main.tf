@@ -39,6 +39,7 @@ resource "azurerm_virtual_network" "main" {
   address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = var.resource_group_name
+  depends_on          = [azurerm_resource_group.this] 
 }
 
 resource "azurerm_subnet" "internal" {
@@ -46,6 +47,7 @@ resource "azurerm_subnet" "internal" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.2.0/24"]
+  depends_on           = [azurerm_virtual_network.main]
 }
 
 resource "azurerm_network_interface" "main" {
@@ -58,6 +60,7 @@ resource "azurerm_network_interface" "main" {
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
   }
+  depends_on = [azurerm_resource_group.this]
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
@@ -82,4 +85,5 @@ resource "azurerm_windows_virtual_machine" "example" {
     sku       = "2022-Datacenter"
     version   = "latest"
   }
+  depends_on = [ azurerm_resource_group.this ]
 }
