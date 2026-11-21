@@ -1,0 +1,25 @@
+name: 10-controlling the execution flow
+on:
+  workflow_dispatch:
+    inputs:
+      pass-unit-tests:
+        type: boolean
+        description: 'Run the step'
+        required: true
+        default: false'
+jobs: 
+  lint-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint and build
+        run: echo "Lint and build the project"
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running unit tests
+        run: echo "Running unit tests"
+      - name: Failing tests
+        if: ${{ github.event.inputs.pass-unit-tests == 'false' }}
+        run: |
+          echo "This step will execute because the input is false"
